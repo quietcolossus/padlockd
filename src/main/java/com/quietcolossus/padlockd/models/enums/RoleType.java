@@ -1,6 +1,6 @@
 package com.quietcolossus.padlockd.models.enums;
 
-public enum RoleEnum {
+public enum RoleType {
     ROLE_USER,
     ROLE_ADMIN
 }
