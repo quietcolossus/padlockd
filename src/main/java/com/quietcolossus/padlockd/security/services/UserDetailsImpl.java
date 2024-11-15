@@ -15,7 +15,6 @@ import java.util.Objects;
 
 @NoArgsConstructor
 @Data
-@Getter
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
@@ -46,7 +45,7 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public static UserDetailsImpl build(User user) {
-        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().toString());
+        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getRoleType().name());
 
         return new UserDetailsImpl(
                 user.getUserId(),
@@ -60,6 +59,24 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() { return authorities; }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -77,9 +94,13 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() { return true; }
+    public boolean isEnabled() {
+        return true;
+    }
 
-    public boolean is2faEnabled() { return is2faEnabled; }
+    public boolean is2faEnabled() {
+        return is2faEnabled;
+    }
 
     @Override
     public boolean equals(Object o) {
