@@ -6,7 +6,7 @@ import com.quietcolossus.padlockd.models.User;
 import java.util.List;
 
 public interface UserService {
-    void updateUserRole(Long userId, String roleName);
+    void updateUserRole(Long userId, String roleType);
 
     List<User> getAllUsers();
 
